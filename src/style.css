@@ -1,0 +1,71 @@
+body{
+    display: block;
+    color: white;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.anchor{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    background-image: url(./images/forecast.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.header{
+    background-color: rgba(0, 60, 128, 0.4);
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+    color: #fff;
+    opacity: 0.8;
+}
+
+.telescope{
+    height: 60px;
+    width: 60px;
+    opacity: 1;
+}
+
+.header-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-group{
+    margin: 4rem auto;
+    max-width: max-content;
+}
+
+input, button{
+    height: 2rem;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #fff;
+    opacity: 1; /* Firefox */
+  }
+
+input{
+    border-radius: 4px;
+    border: 2px solid white;
+    background-color: rgba(0, 60, 128, 0.4);
+    color: #fff;
+    outline: white;
+    font-size: 1rem;
+}
+
+button{
+    background-color: #4c1d95;
+    color: #fff;
+    border-radius: 8px;
+    height: 2rem;
+    cursor: pointer;
+}
