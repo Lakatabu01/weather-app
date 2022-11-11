@@ -6,7 +6,6 @@ const header = document.createElement("div");
 const appName = "Weather App";
 const telescopeImage = document.createElement("img");
 const searchGroup = document.createElement("div");
-const degree = "&#8451";
 
 telescopeImage.src = logo;
 telescopeImage.classList.add("telescope");
@@ -40,7 +39,7 @@ function searchBar() {
   searchGroup.classList.add("search-group");
   searchGroup.innerHTML = `
   <div>
-  <input class="user-input" placeholder="Houston">
+  <input class="user-input" placeholder="Type in a city...">
   <button class="search-button">Search</button>
   </div>
   `;
@@ -75,15 +74,17 @@ async function weatherForecast() {
 
     //console.log(location);
     location.textContent = (await state) + ", " + (await country) + ".";
-    temperatureDisplay.textContent = await temperature;
-    feelsLikeDisplay.textContent = "Feels like: " + "  " + (await feelsLike);
-    humidityDisplay.textContent = "Humidity: " + "  " + (await humidity);
-    windDisplay.textContent = "Wind speed: " + "  " + (await windSpeed);
+    temperatureDisplay.textContent = (await temperature) + " \u00B0 celsius";
+    feelsLikeDisplay.textContent =
+      "Feels like: " + "  " + (await feelsLike) + " \u00B0 C";
+    humidityDisplay.textContent = "Humidity: " + "  " + (await humidity) + " %";
+    windDisplay.textContent =
+      "Wind speed: " + "  " + (await windSpeed) + " km/h";
     cloudDisplay.textContent = "Clouds: " + "  " + (await cloud);
 
     input.value = "";
   } catch (error) {
-    alert("could not get weather information");
+    alert("Oops, could not get weather information");
   }
 }
 
@@ -92,9 +93,8 @@ function displayWeatherData() {
   weatherDiv.classList.add("weather-info");
   weatherDiv.innerHTML = `
   <h1 class= "country"></h1>
-
   <div class= "all-data">
-  <p class= "temp"></p>
+  <p class= "temp">Welcome.</p>
   <p class= "feel"></p>
   <p class= "humidity"></p>
   <p class= "wind"></p>
@@ -104,6 +104,3 @@ function displayWeatherData() {
   return weatherDiv;
 }
 displayWeatherData();
-
-//const regionNames = new Intl.DisplayNames(["ng"], { type: "region" });
-//console.log(regionNames.of("NG"));
