@@ -6,16 +6,24 @@ const header = document.createElement("div");
 const appName = "Weather App";
 const telescopeImage = document.createElement("img");
 const searchGroup = document.createElement("div");
+const degree = "&#8451";
 
 telescopeImage.src = logo;
 telescopeImage.classList.add("telescope");
 header.classList.add("header");
 anchorDiv.appendChild(header);
 anchorDiv.appendChild(searchGroup);
+anchorDiv.appendChild(displayWeatherData());
 
 appHeader();
-//weatherForecast();
 searchBar();
+
+const location = document.querySelector(".country");
+const temperatureDisplay = document.querySelector(".temp");
+const feelsLikeDisplay = document.querySelector(".feel");
+const humidityDisplay = document.querySelector(".humidity");
+const windDisplay = document.querySelector(".wind");
+const cloudDisplay = document.querySelector(".clouds");
 
 function appHeader() {
   header.innerHTML = `
@@ -46,16 +54,56 @@ function assignPromiseToButton() {
 
 async function weatherForecast() {
   try {
+    const input = document.querySelector(".user-input");
     const response = await fetch(
-      "https://api.openweathermap.org/data/2.5/weather?q=ontario&appid=4c0ae5ddb569d5716e4c12c7f6bb943f&units=metric",
+      "https://api.openweathermap.org/data/2.5/weather?q=" +
+        input.value +
+        "&appid=4c0ae5ddb569d5716e4c12c7f6bb943f&units=metric",
       { mode: "cors" }
     );
     const responseReport = await response.json();
-    console.log(responseReport);
+
+    const state = responseReport.name;
+    const temperature = responseReport.main.temp;
+    const feelsLike = responseReport.main.feels_like;
+    const humidity = responseReport.main.humidity;
+    const windSpeed = responseReport.wind.speed;
+    const cloud = responseReport.weather[0].description;
+    const countryCode = responseReport.sys.country;
+    const codeToName = new Intl.DisplayNames(["ng"], { type: "region" });
+    const country = codeToName.of(countryCode);
+
+    //console.log(location);
+    location.textContent = (await state) + ", " + (await country) + ".";
+    temperatureDisplay.textContent = await temperature;
+    feelsLikeDisplay.textContent = "Feels like: " + "  " + (await feelsLike);
+    humidityDisplay.textContent = "Humidity: " + "  " + (await humidity);
+    windDisplay.textContent = "Wind speed: " + "  " + (await windSpeed);
+    cloudDisplay.textContent = "Clouds: " + "  " + (await cloud);
+
+    input.value = "";
   } catch (error) {
     alert("could not get weather information");
   }
 }
+
+function displayWeatherData() {
+  const weatherDiv = document.createElement("div");
+  weatherDiv.classList.add("weather-info");
+  weatherDiv.innerHTML = `
+  <h1 class= "country"></h1>
+
+  <div class= "all-data">
+  <p class= "temp"></p>
+  <p class= "feel"></p>
+  <p class= "humidity"></p>
+  <p class= "wind"></p>
+  <p class= "clouds"></p>
+  </div>
+  `;
+  return weatherDiv;
+}
+displayWeatherData();
 
 //const regionNames = new Intl.DisplayNames(["ng"], { type: "region" });
 //console.log(regionNames.of("NG"));

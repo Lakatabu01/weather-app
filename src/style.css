@@ -1,30 +1,48 @@
+:root, html, body{
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    max-height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
 body{
     display: block;
     color: white;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
+    background-image: url(./images/forecast.jpg);
+    background-position: center;
+    background-repeat: repeat;
+    object-fit: fill;
+    font-family: popins-medium;
 }
+
+@font-face{
+    font-family: popins-medium;
+    src: url(./fonts/Poppins-Medium.ttf);
+  }
+
+  @font-face{
+    font-family: popins-bold;
+    src: url(./fonts/Poppins-Bold.ttf);
+  }
 
 .anchor{
     width: 100%;
     padding: 0;
     margin: 0;
     height: 100%;
-    background-image: url(./images/forecast.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 .header{
     background-color: rgba(0, 60, 128, 0.4);
-    padding: 1rem;
+    padding: 0.5rem;
     display: flex;
     justify-content: center;
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: #fff;
     opacity: 0.8;
+    font-family: popins-bold;
 }
 
 .telescope{
@@ -40,7 +58,7 @@ body{
 }
 
 .search-group{
-    margin: 4rem auto;
+    margin: 2rem auto;
     max-width: max-content;
 }
 
@@ -68,4 +86,32 @@ button{
     border-radius: 8px;
     height: 2rem;
     cursor: pointer;
+}
+
+.weather-info{
+    margin: 5px auto 22px auto;
+    width: 60vw;
+    height: fit-content;
+    padding: 10px 20px 10px 30px;
+    background-color: rgba(128, 0, 139, 0.5);
+    border-radius: 10px;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.all-data{
+    font-size: 20px;
+}
+
+.country{
+        height: fit-content;
+}
+
+.temp{
+    font-size: larger;
+    padding-left: 10px;
 }
