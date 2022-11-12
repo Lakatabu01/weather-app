@@ -5,4 +5,4 @@ It was built with HTML, CSS and vanilla javascript. The project was bundled
 with Webpack and transpiled with Babel.  
 
 Linter and prettier plugins were installed to structure and enhance the overall outlook of the code.
- 
+Link to the published page: https://lakatabu01.github.io/weather-app/
